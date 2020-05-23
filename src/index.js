@@ -1,12 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Quiz from './Components/Quiz'
+import {createStore} from 'redux'
+import { Provider } from 'react-redux'
+import rootReducer from './Components/Reducers'
+
+const store = createStore(rootReducer,  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store = {store}>
+      <Quiz />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
