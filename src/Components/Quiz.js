@@ -1,8 +1,10 @@
 import React, {useEffect} from 'react'
-import { Row, Col, Button, Container } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 import { fetchQuestions } from './Actions'
 import { useDispatch , useSelector } from 'react-redux'
 import DotLoader from 'react-spinners/DotLoader'
+import Question from './Question'
+import Answers from './Answers'
 
 const Quiz = () => {
     const dispatch = useDispatch()
@@ -20,35 +22,11 @@ const Quiz = () => {
                 />
             </Container>
         )
-    }else if(state.loading ===false){
+    }else if(state.loading === false){
         return(
             <Container>
-            <Row className = 'mt-5 mb-3'>
-                <Col className = 'd-flex justify-content-center'>
-                    <h3>Questions</h3>
-                </Col>
-            </Row>
-            <Row className = 'mb-3'>
-                <Col className = 'd-flex justify-content-center'>
-                    <Button className = 'btn btn-secondary'>Answer 1</Button>
-                </Col>
-                <Col className = 'd-flex justify-content-center'>
-                    <Button className = 'btn btn-secondary'>Answer 2</Button>
-                </Col>
-            </Row>
-            <Row className = 'mb-3'>
-                <Col className = 'd-flex justify-content-center'>
-                    <Button className = 'btn btn-secondary'>Answer 1</Button>
-                </Col>
-                <Col className = 'd-flex justify-content-center'>
-                    <Button className = 'btn btn-secondary'>Answer 2</Button>
-                </Col>
-            </Row>
-            <Row>
-            <Col className = 'd-flex justify-content-center'>
-                <Button>Next</Button>
-            </Col>
-            </Row>
+                <Question question = {state.questions[0].question}/>
+                <Answers type = {state.questions[0].type} />
             </Container>
         )
     }

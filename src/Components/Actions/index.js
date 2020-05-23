@@ -6,24 +6,24 @@ export const fetchQuestionsBegin = () => ({
     type: FETCH_QUESTIONS_BEGIN
 })
 
-export const fetchQuestionsSuccess = (questions) => ({
+export const fetchQuestionsSuccess = (payload) => ({
     type: FETCH_QUESTIONS_SUCCESS,
-    payload: {questions}
+    payload
 })
 
-export const fetchQuestionsError = (error) => ({
+export const fetchQuestionsError = (payload) => ({
     type: FETCH_QUESTIONS_ERROR,
-    payload: {error}
+    payload
 })
 
 export function fetchQuestions(){
     return dispatch => {
         dispatch(fetchQuestionsBegin())
-        return fetch('https://opentdb.com/api.php?amount=10&category=27')
+        return fetch('https://opentdb.com/api.php?amount=10')
             .then(handleErrors)
             .then(res => res.json())
             .then(json => {
-                dispatch(fetchQuestionsSuccess(json))
+                dispatch(fetchQuestionsSuccess(json.results))
             })
             .catch(error => dispatch(fetchQuestionsError(error)))
     }
