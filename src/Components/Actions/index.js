@@ -16,7 +16,7 @@ export const fetchQuestionsError = (payload) => ({
     payload
 })
 
-export function fetchQuestions(){
+export function fetchQuestions() {
     return dispatch => {
         dispatch(fetchQuestionsBegin())
         return fetch('https://opentdb.com/api.php?amount=10')
@@ -30,8 +30,8 @@ export function fetchQuestions(){
 }
 
 //handle HTTP errors since fetch won't
-function handleErrors(response){
-    if(!response.ok){
+function handleErrors(response) {
+    if (!response.ok) {
         throw Error(response.statusText)
     }
     return response

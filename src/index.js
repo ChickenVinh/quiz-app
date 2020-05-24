@@ -9,7 +9,7 @@ import { Provider } from 'react-redux'
 import rootReducer from './Components/Reducers'
 import thunk from 'redux-thunk'
 
-const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose 
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(
   rootReducer,
   composeEnhancer(applyMiddleware(thunk))
@@ -17,7 +17,7 @@ const store = createStore(
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store = {store}>
+    <Provider store={store}>
       <Quiz />
     </Provider>
   </React.StrictMode>,
