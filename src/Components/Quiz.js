@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import DotLoader from 'react-spinners/DotLoader'
 import Question from './Question'
 import Answers from './Answers'
+import Result from './Result'
 
 const Quiz = () => {
     const dispatch = useDispatch()
@@ -23,12 +24,31 @@ const Quiz = () => {
             </Container>
         )
     } else if (state.loading === false) {
-        return (
-            <Container>
-                <Question question={state.questions[0].question} />
-                <Answers type={state.questions[0].type} />
-            </Container>
-        )
+        if (state.index <= 9) {
+            return (
+                <Container>
+                    <Question
+                        question={state.questions[state.index].question}
+                        index={state.index}
+                    />
+                    <Answers
+                        index={state.index}
+                        type={state.questions[state.index].type}
+                        incorrect_answers={state.questions[state.index].incorrect_answers}
+                        correct_answer={state.questions[state.index].correct_answer}
+                    />
+                </Container>
+            )
+        } else {
+            return (
+                <Container>
+                    <Result
+                        className='float-left'
+                        myAnswers={state.selectedAnswer}
+                    />
+                </Container>
+            )
+        }
     }
 }
 

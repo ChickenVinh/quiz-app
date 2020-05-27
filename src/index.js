@@ -18,7 +18,7 @@ const store = createStore(
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Quiz />
+      <Quiz bg='primary' />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
